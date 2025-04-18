@@ -105,4 +105,4 @@ Gestión eficiente de la información de las Reservas permitiendo al usuario rea
 
 ## Autor
 
-**Jose Reynaldo Zafra Vargas**
+**José Reynaldo Zafra Vargas**
