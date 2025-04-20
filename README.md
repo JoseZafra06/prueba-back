@@ -1,108 +1,144 @@
-# Sistema de Gestión de Reservas
+# 📌 DESARROLLO DE SISTEMA
 
-## Tecnologías Utilizadas
+## Descripción general del proyecto
 
-### Interfaz (Frontend)
-El desarrollo del frontend se realizó utilizando **Vue.js 2**. Para el diseño de la interfaz se utilizó **Vuetify**, lo que permitió construir un entorno visual moderno, adaptable y amigable para el usuario. La navegación entre vistas fue gestionada mediante **Vue Router**, facilitando una experiencia fluida en la transición entre componentes del sistema.
+Este proyecto tiene como finalidad el desarrollo de una aplicación web, para optimizar la gestión de un restaurante a través de una administración eficiente de tres aspectos clave: *Comensales*, *Mesas* y *Reservas*. La aplicación ofrece un sistema intuitivo que permite a los usuarios realizar operaciones de 
+*registro*, *actualización* y *eliminación* de datos de manera sencilla y rápida, manteniendo una interfaz amigable y fácil de usar.
 
-### Backend
-Se realizaron las siguientes tareas:
-- Creación de migraciones para definir la estructura de la base de datos.
-- Definición de modelos **Eloquent** para representar las entidades del sistema (Comensales, Mesas y Reservas), gestionar la lógica de negocio y establecer relaciones entre ellas.
-- Desarrollo de controladores para manejar las operaciones **CRUD** requeridas en cada módulo.
-- Configuración del archivo `.env` especificando el nombre de la base de datos utilizada.
+✅ Validaciones implementadas: Para optimizar el flujo de trabajo y mejorar la experiencia del usuario, se han implementado las siguientes validaciones.
 
----
+1. **Formato de correo electrónico**: Se valida que el formato del correo electrónico sea correcto.
+2. **Módulo Mesas**:
+   - Verifica que el número de mesa no esté ya en uso. Si está en uso, se bloquea la operación y se muestra un mensaje de advertencia.
+3. **Módulo Reservas**:
+   - Verifica que la capacidad de la mesa no sea superada por el número de personas. Si la capacidad es excedida, se bloquea la operación 
+   y se muestra un mensaje de advertencia.
 
-## Mantenedor de Comensales
-
-**Objetivo:**  
-Gestión eficiente de la información de los Comensales permitiendo al usuario realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar).
-
-### Requerimientos Funcionales
-
-#### Registrar
-- Permite crear un nuevo registro de Comensal.
-- Muestra mensajes de confirmación al guardar los cambios.
-- **Campos requeridos:**
-  - Nombre completo
-  - Correo electrónico (con validación de formato)
-- **Campos opcionales:**
-  - Teléfono (Numérico)
-  - Dirección (Texto libre)
-
-#### Editar
-- Permite editar los datos de un comensal previamente registrado.
-- Valida nuevamente el formato del correo electrónico.
-- Permite actualizar todos los campos.
-- Muestra mensajes de confirmación al guardar los cambios.
-
-#### Eliminar
-- El sistema no elimina físicamente el registro, solo cambia el estado a "eliminado" para preservar la información relacionada como reservas.
-- Solicita confirmación previa al usuario.
-- Muestra mensajes de éxito o error según el resultado.
+Además, tanto los registros de **Comensales** como de **Mesas** no se eliminan físicamente. En su lugar, su estado se cambia a "eliminado", 
+lo que impide que sean visibles en la interfaz. Esta medida permite salvaguardar la información relacionada, como las reservas asociadas.
 
 ---
 
-## Mantenedor de Mesas
+## Requisitos previos
 
-**Objetivo:**  
-Gestión eficiente de la información de las Mesas permitiendo al usuario realizar operaciones CRUD.
-
-### Requerimientos Funcionales
-
-#### Registrar
-- Permite crear un nuevo registro de Mesa.
-- Verifica que el número de mesa no esté duplicado.
-- Muestra mensajes de confirmación al guardar.
-- **Campos requeridos:**
-  - Número de Mesa (Numérico)
-  - Capacidad (Numérico)
-- **Campos opcionales:**
-  - Ubicación (Texto libre)
-
-#### Editar
-- Permite editar los datos de una mesa registrada.
-- Verifica nuevamente la unicidad del número de mesa.
-- Muestra mensajes de confirmación al guardar.
-
-#### Eliminar
-- El sistema no elimina físicamente el registro, solo cambia su estado a "eliminado".
-- Solicita confirmación previa al usuario.
-- Muestra mensajes de éxito o error según el resultado.
+- **Laragon**
+- **Laravel**: Framework 10.x (específicamente 10.48.29)
+- **MySQL**: mysql-8.0.30
+- **Vue.js**:
+  - Vue.js versión 2
+  - Node: node-v20.11.0
+  - Vuetify v2
+  - vue-router@3
 
 ---
 
-## Mantenedor de Reservas
+## Pasos para levantar el entorno de desarrollo
 
-**Objetivo:**  
-Gestión eficiente de la información de las Reservas permitiendo al usuario realizar operaciones CRUD.
+### 1. Clonar el repositorio
 
-### Requerimientos Funcionales
+**Backend**  
+```bash
+git clone https://github.com/JoseZafra06/prueba-back.git
+```
 
-#### Registrar
-- Permite crear un nuevo registro de reserva.
-- Muestra mensajes de confirmación al guardar.
-- Al seleccionar una mesa, se muestra su capacidad.
-- Si el número de personas excede la capacidad, se muestra una advertencia y se bloquea el registro.
-- **Campos requeridos:**
-  - Fecha
-  - Hora
-  - Número de Personas (Numérico)
-  - Comensal Asignado (Seleccionado desde lista desplegable)
-  - Mesa Asignada (Seleccionada desde lista desplegable)
-
-#### Editar
-- Permite editar los datos de una reserva registrada.
-- Valida nuevamente la capacidad de la mesa seleccionada.
-- Muestra mensajes de confirmación al guardar.
-
-#### Eliminar
-- Solicita confirmación previa al usuario.
-- Muestra mensajes de éxito o error según el resultado.
+**Frontend**  
+```bash
+git clone https://github.com/JoseZafra06/prueba-front.git
+```
 
 ---
 
-## Autor
+### 2. Configurar las variables de entorno necesarias
 
-**José Reynaldo Zafra Vargas**
+> Asegúrese de que la base de datos `prueba-mesa` exista. Si no existe, Laravel la creará automáticamente al ejecutar las migraciones.
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=prueba-mesa
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+---
+
+### 3. Ejecutar el comando para construir y levantar los contenedores
+
+#### **Backend**
+
+1. Ir al directorio del backend:  
+   ```bash
+   cd prueba-back/
+   ```
+
+2. Crear el archivo `.env`:  
+   ```bash
+   cp .env.example .env
+   ```
+
+3. Configurar el archivo `.env` con los datos correspondientes.
+
+4. Instalar dependencias:  
+   ```bash
+   composer install
+   ```
+
+   > Si hay conflictos:
+   ```bash
+   composer update
+   ```
+
+5. Ejecutar migraciones (acepta con "YES" si pregunta por la creación de la base de datos): 
+   ```bash
+   php artisan migrate
+   ```
+
+6. Generar la clave de la aplicación:  
+   ```bash
+   php artisan key:generate
+   ```
+
+7. Levantar el servidor:  
+   ```bash
+   php artisan serve
+   ```
+
+#### **Frontend**
+
+1. Ir al directorio del frontend:  
+   ```bash
+   cd prueba-front/
+   ```
+
+2. Instalar dependencias:  
+   ```bash
+   npm install
+   ```
+
+3. Levantar el servidor:  
+   ```bash
+   npm run serve
+   ```
+
+---
+
+### 4. Acceder a la aplicación
+
+> Verifique que no haya otros procesos usando los puertos requeridos. Si es necesario, cierre terminales abiertas y reinicia Laragon.
+
+#### 🌐 URLs
+
+- **Backend (Laravel API)**: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+- **Frontend (Vue.js)**: [http://localhost:8080](http://localhost:8080)
+
+#### 🔢 Puertos
+
+- Backend: `8000`  
+- Frontend: `8080`  
+- MySQL: `3306`
+
+---
+
+# 👨‍💻 Autor
+**Jose Reynaldo Zafra Vargas**
