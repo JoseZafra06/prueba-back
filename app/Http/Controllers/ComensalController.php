@@ -18,7 +18,11 @@ class ComensalController extends Controller
             ->orderBy('id', 'desc')
             ->get();
 
-        return ApiResponse::success(Constants::OPERACION_EXITOSA, 200, $comensal);
+        if($comensal->isEmpty()){
+            return ApiResponse::warning(Constants::NO_HAY_DATOS, 200, $comensal);
+        } else{
+            return ApiResponse::success(Constants::OPERACION_EXITOSA, 200, $comensal);
+        }
     }
 
     //Crear, Editar, Eliminar

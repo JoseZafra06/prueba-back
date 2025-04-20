@@ -33,7 +33,11 @@ class ReservaController extends Controller
             ];
         }
 
-        return ApiResponse::success(Constants::OPERACION_EXITOSA, 200, $data);
+        if($reserva->isEmpty()){
+            return ApiResponse::warning(Constants::NO_HAY_DATOS, 200, $data);
+        } else{
+            return ApiResponse::success(Constants::OPERACION_EXITOSA, 200, $data);
+        }
     }
 
      //Crear, Editar, Eliminar
