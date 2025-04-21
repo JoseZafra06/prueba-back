@@ -23,6 +23,7 @@ lo que impide que sean visibles en la interfaz. Esta medida permite salvaguardar
 
 - **Laragon**
 - **Laravel**: Framework 10.x (específicamente 10.48.29)
+- **PHP**: 8.2.18
 - **MySQL**: mysql-8.0.30
 - **Vue.js**:
   - Vue.js versión 2
@@ -115,8 +116,9 @@ DB_PASSWORD=
    ```bash
    npm install
    ```
+3. Verifique primero que el servidor backend esté levantado (con php artisan serve).
 
-3. Levantar el servidor:  
+4. Levantar el servidor:  
    ```bash
    npm run serve
    ```
