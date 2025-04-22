@@ -2,17 +2,24 @@
 
 ## Descripción general del proyecto
 
-Este proyecto tiene como finalidad el desarrollo de una aplicación web, para optimizar la gestión de un restaurante a través de una administración eficiente de tres aspectos clave: *Comensales*, *Mesas* y *Reservas*. La aplicación ofrece un sistema intuitivo que permite a los usuarios realizar operaciones de 
-*registro*, *actualización* y *eliminación* de datos de manera sencilla y rápida, manteniendo una interfaz amigable y fácil de usar.
+Este proyecto tiene como propósito el desarrollo de una aplicación web orientada a mejorar la gestión de un restaurante. Se enfoca principalmente 
+en tres pilares fundamentales de la operación: **Comensales**, **Mesas** y **Reservas**.
 
-✅ Validaciones implementadas: Para optimizar el flujo de trabajo y mejorar la experiencia del usuario, se han implementado las siguientes validaciones.
+La plataforma ha sido diseñada para ofrecer una experiencia de usuario ágil, intuitiva y eficiente. Permite llevar a cabo tareas de **registro**, **actualización** y **eliminación** de información de manera práctica, con una interfaz amigable que facilita la administración diaria y 
+contribuye a una mejor organización interna del negocio.
 
-1. **Formato de correo electrónico**: Se valida que el formato del correo electrónico sea correcto.
-2. **Módulo Mesas**:
-   - Verifica que el número de mesa no esté ya en uso. Si está en uso, se bloquea la operación y se muestra un mensaje de advertencia.
-3. **Módulo Reservas**:
-   - Verifica que la capacidad de la mesa no sea superada por el número de personas. Si la capacidad es excedida, se bloquea la operación 
-   y se muestra un mensaje de advertencia.
+#### ✅ Validaciones Implementadas
+
+1. **Formato de Correo Electrónico**  
+   - Se valida que el correo ingresado tenga un formato correcto.
+
+2. **Módulo de Mesas**  
+   - Se verifica que el número de mesa no esté ya en uso.  
+   - Si está en uso, se bloquea la operación y se muestra un mensaje de advertencia.
+
+3. **Módulo de Reservas**  
+   - Se verifica que la cantidad de personas no supere la capacidad de la mesa.  
+   - En caso de excederla, se bloquea la operación y se muestra un mensaje de advertencia.
 
 Además, tanto los registros de **Comensales** como de **Mesas** no se eliminan físicamente. En su lugar, su estado se cambia a "eliminado", 
 lo que impide que sean visibles en la interfaz. Esta medida permite salvaguardar la información relacionada, como las reservas asociadas.
@@ -21,15 +28,15 @@ lo que impide que sean visibles en la interfaz. Esta medida permite salvaguardar
 
 ## Requisitos previos
 
-- **Laragon**
-- **Laravel**: Framework 10.x (específicamente 10.48.29)
-- **PHP**: 8.2.18
-- **MySQL**: mysql-8.0.30
-- **Vue.js**:
-  - Vue.js versión 2
-  - Node: node-v20.11.0
-  - Vuetify v2
+- 🚀 **Laravel**: Framework 10.x (versión específica: 10.48.29)  
+- 🐘 **PHP**: 8.2.18  
+- 🛢️ **MySQL**: 8.0.30  
+
+- 🌐 **Frontend (Vue.js)**:
+  - Vue.js 2
+  - Vuetify 2
   - vue-router@3
+  - Node.js v20.11.0
 
 ---
 
@@ -132,17 +139,22 @@ git clone https://github.com/JoseZafra06/prueba-front.git
 
 #### 🌐 URLs
 
-- **Backend (Laravel API)**: [http://127.0.0.1:8000](http://127.0.0.1:8000)
-- **Frontend (Vue.js)**: [http://localhost:8080](http://localhost:8080)
-- **Swagger**: [http://127.0.0.1:8000/api/documentation](http://127.0.0.1:8000/api/documentation)
+- 🔙 **Backend (API Laravel)**:  
+  [http://127.0.0.1:8000](http://127.0.0.1:8000)
+
+- 💻 **Frontend (Vue.js)**:  
+  [http://localhost:8080](http://localhost:8080)
+
+- 📄 **Documentación de la API (Swagger UI)**:  
+  [http://127.0.0.1:8000/api/documentation](http://127.0.0.1:8000/api/documentation)
 
 #### 🔢 Puertos
 
-- Backend: `8000`  
-- Frontend: `8080`  
-- MySQL: `3306`
+- 🔙 **Backend (Laravel)**: `8000`  
+- 💻 **Frontend (Vue.js)**: `8080`  
+- 🛢️ **Base de Datos (MySQL)**: `3306`
 
 ---
 
-# 👨‍💻 Autor
-**Jose Reynaldo Zafra Vargas**
+# 👨‍💻 Autor:
+**José Reynaldo Zafra Vargas**
