@@ -21,4 +21,10 @@ class Comensal extends Model
     ];
 
     protected $dates = ['deleted_at'];
+
+    // Relaciones
+    public function reserva()
+    {
+        return $this->hasMany(\App\Models\Reserva::class, 'comensal_id');
+    }
 }

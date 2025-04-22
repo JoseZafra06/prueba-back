@@ -20,4 +20,10 @@ class Mesa extends Model
     ];
 
     protected $dates = ['deleted_at'];
+
+    // Relaciones
+    public function reserva()
+    {
+        return $this->hasMany(\App\Models\Reserva::class, 'mesa_id');
+    }
 }

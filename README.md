@@ -51,16 +51,27 @@ git clone https://github.com/JoseZafra06/prueba-front.git
 
 ### 2. Configurar las variables de entorno necesarias
 
-> Asegúrese de que la base de datos `prueba-mesa` exista. Si no existe, Laravel la creará automáticamente al ejecutar las migraciones.
+1. Ve al directorio del backend:
+   ```bash
+   cd prueba-back/
+   ```
 
-```env
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=prueba-mesa
-DB_USERNAME=root
-DB_PASSWORD=
-```
+2. Crea el archivo `.env` a partir del archivo de ejemplo:
+   ```bash
+   cp .env.example .env
+   ```
+
+3. Edita el archivo `.env` con la configuración de tu base de datos:
+   > Asegúrese de que la base de datos `prueba-mesa` exista. Si no existe, Laravel la creará automáticamente al ejecutar migraciones.
+
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=prueba-mesa
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
 
 ---
 
@@ -68,19 +79,9 @@ DB_PASSWORD=
 
 #### **Backend**
 
-1. Ir al directorio del backend:  
-   ```bash
-   cd prueba-back/
-   ```
+1. Configurar el archivo `.env` con los datos correspondientes.
 
-2. Crear el archivo `.env`:  
-   ```bash
-   cp .env.example .env
-   ```
-
-3. Configurar el archivo `.env` con los datos correspondientes.
-
-4. Instalar dependencias:  
+2. Instalar dependencias:  
    ```bash
    composer install
    ```
@@ -90,17 +91,17 @@ DB_PASSWORD=
    composer update
    ```
 
-5. Ejecutar migraciones (acepta con "YES" si pregunta por la creación de la base de datos): 
+3. Ejecutar migraciones (acepta con "YES" si pregunta por la creación de la base de datos): 
    ```bash
    php artisan migrate
    ```
 
-6. Generar la clave de la aplicación:  
+4. Generar la clave de la aplicación:  
    ```bash
    php artisan key:generate
    ```
 
-7. Levantar el servidor:  
+5. Levantar el servidor:  
    ```bash
    php artisan serve
    ```
@@ -133,6 +134,7 @@ DB_PASSWORD=
 
 - **Backend (Laravel API)**: [http://127.0.0.1:8000](http://127.0.0.1:8000)
 - **Frontend (Vue.js)**: [http://localhost:8080](http://localhost:8080)
+- **Swagger**: [http://127.0.0.1:8000/api/documentation](http://127.0.0.1:8000/api/documentation)
 
 #### 🔢 Puertos
 
