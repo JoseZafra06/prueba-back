@@ -1,0 +1,689 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Restaurante CRUD",
+        "description": "API para la gestión de Restaurantes: Comensales, Mesas y Reservas",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000"
+        }
+    ],
+    "paths": {
+        "/api/Comensal/listComensal": {
+            "get": {
+                "tags": [
+                    "Comensal"
+                ],
+                "summary": "Listar comensales",
+                "description": "Retorna una lista de comensales con estado activo (state = 1)",
+                "operationId": "4b004ca692cefb6a03f001d71d793702",
+                "responses": {
+                    "200": {
+                        "description": "Lista de comensales",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "nombre": {
+                                                        "type": "string",
+                                                        "example": "Juan Pérez"
+                                                    },
+                                                    "correo": {
+                                                        "type": "string",
+                                                        "example": "juan.perez@example.com"
+                                                    },
+                                                    "telefono": {
+                                                        "type": "string",
+                                                        "example": "987654321"
+                                                    },
+                                                    "direccion": {
+                                                        "type": "string",
+                                                        "example": "Av. Siempre Viva 123"
+                                                    },
+                                                    "state": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Comensal/crudComensal": {
+            "post": {
+                "tags": [
+                    "Comensal"
+                ],
+                "summary": "Crear, editar o eliminar un comensal",
+                "description": "Dependiendo del valor del parámetro 'action', se puede crear (c), actualizar (u) o eliminar (d) un comensal.",
+                "operationId": "a20c93d406b1da33c0df49c7515e7383",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "action"
+                                ],
+                                "properties": {
+                                    "action": {
+                                        "description": "Acción a realizar: 'c' para crear, 'u' para actualizar, 'd' para eliminar",
+                                        "type": "string",
+                                        "example": "c"
+                                    },
+                                    "id": {
+                                        "description": "ID del comensal (requerido para 'u' y 'd')",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "nombre": {
+                                        "description": "Nombre del comensal (requerido para 'c' y 'u')",
+                                        "type": "string",
+                                        "example": "JOSE ZAFRA"
+                                    },
+                                    "correo": {
+                                        "description": "Correo electrónico del comensal",
+                                        "type": "string",
+                                        "example": "josereynaldozv@gmail.com"
+                                    },
+                                    "telefono": {
+                                        "description": "Teléfono del comensal",
+                                        "type": "string",
+                                        "example": "934466163"
+                                    },
+                                    "direccion": {
+                                        "description": "Dirección del comensal",
+                                        "type": "string",
+                                        "example": "AV. BALTA"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Operación exitosa"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "nombre": {
+                                                    "type": "string",
+                                                    "example": "JOSE ZAFRA"
+                                                },
+                                                "correo": {
+                                                    "type": "string",
+                                                    "example": "josereynaldozv@gmail.com"
+                                                },
+                                                "telefono": {
+                                                    "type": "string",
+                                                    "example": "934466163"
+                                                },
+                                                "direccion": {
+                                                    "type": "string",
+                                                    "example": "AV. BALTA"
+                                                },
+                                                "state": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2024-04-21T14:22:00.000000Z"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2024-04-21T14:22:00.000000Z"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error del servidor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Error interno del servidor"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "error_message": {
+                                                    "type": "string",
+                                                    "example": "Detalle del error"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Mesa/listMesa": {
+            "get": {
+                "tags": [
+                    "Mesa"
+                ],
+                "summary": "Listar mesas",
+                "description": "Retorna una lista de mesas con estado activo (state = 1)",
+                "operationId": "6e75c191e292b208adff10813ebd4e5a",
+                "responses": {
+                    "200": {
+                        "description": "Lista de mesas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "numero_mesa": {
+                                                        "type": "string",
+                                                        "example": "M-01"
+                                                    },
+                                                    "capacidad": {
+                                                        "type": "integer",
+                                                        "example": 4
+                                                    },
+                                                    "ubicacion": {
+                                                        "type": "string",
+                                                        "example": "Zona A"
+                                                    },
+                                                    "state": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Mesa/crudMesa": {
+            "post": {
+                "tags": [
+                    "Mesa"
+                ],
+                "summary": "Crear, editar o eliminar una mesa",
+                "description": "Dependiendo del valor del parámetro 'action', se puede crear (c), actualizar (u) o eliminar (d) una mesa.",
+                "operationId": "eb5c0f0b5aad32738423efa8b90a0224",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "action"
+                                ],
+                                "properties": {
+                                    "action": {
+                                        "description": "Acción a realizar: 'c' para crear, 'u' para actualizar, 'd' para eliminar",
+                                        "type": "string",
+                                        "example": "c"
+                                    },
+                                    "id": {
+                                        "description": "ID de la mesa (requerido para 'u' y 'd')",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "numero_mesa": {
+                                        "description": "Número de la mesa (requerido para 'c' y 'u')",
+                                        "type": "integer",
+                                        "example": 10
+                                    },
+                                    "capacidad": {
+                                        "description": "Capacidad de la mesa (requerido para 'c' y 'u')",
+                                        "type": "integer",
+                                        "example": 5
+                                    },
+                                    "ubicacion": {
+                                        "description": "Ubicación de la mesa (opcional para 'c' y 'u')",
+                                        "type": "string",
+                                        "example": "ZONA VIP"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Operación exitosa"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "mesa": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "numero_mesa": {
+                                                            "type": "integer",
+                                                            "example": 10
+                                                        },
+                                                        "capacidad": {
+                                                            "type": "integer",
+                                                            "example": 5
+                                                        },
+                                                        "ubicacion": {
+                                                            "type": "string",
+                                                            "example": "ZONA VIP"
+                                                        },
+                                                        "state": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "created_at": {
+                                                            "type": "string",
+                                                            "format": "date-time",
+                                                            "example": "2024-04-21T14:22:00.000000Z"
+                                                        },
+                                                        "updated_at": {
+                                                            "type": "string",
+                                                            "format": "date-time",
+                                                            "example": "2024-04-21T14:22:00.000000Z"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "status": {
+                                                    "type": "integer",
+                                                    "example": 0
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error del servidor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Error interno del servidor"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "error_message": {
+                                                    "type": "string",
+                                                    "example": "Detalle del error"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Reserva/listReserva": {
+            "get": {
+                "tags": [
+                    "Reserva"
+                ],
+                "summary": "Listar reservas",
+                "description": "Retorna una lista de reservas incluyendo información del comensal y de la mesa asociada.",
+                "operationId": "5c460fdd036428133ff05b0ef4eff5d3",
+                "responses": {
+                    "200": {
+                        "description": "Lista de reservas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "comensal_id": {
+                                                        "type": "integer",
+                                                        "example": 2
+                                                    },
+                                                    "nombre": {
+                                                        "type": "string",
+                                                        "example": "JOSE ZAFRA"
+                                                    },
+                                                    "mesa_id": {
+                                                        "type": "integer",
+                                                        "example": 3
+                                                    },
+                                                    "numero_mesa": {
+                                                        "type": "string",
+                                                        "example": "10"
+                                                    },
+                                                    "capacidad": {
+                                                        "type": "integer",
+                                                        "example": 4
+                                                    },
+                                                    "fecha": {
+                                                        "type": "string",
+                                                        "format": "date",
+                                                        "example": "2024-04-21"
+                                                    },
+                                                    "hora": {
+                                                        "type": "string",
+                                                        "example": "19:30"
+                                                    },
+                                                    "numero_de_personas": {
+                                                        "type": "integer",
+                                                        "example": 3
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error del servidor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Error interno del servidor"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "error_message": {
+                                                    "type": "string",
+                                                    "example": "Detalle del error"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Reserva/crudReserva": {
+            "post": {
+                "tags": [
+                    "Reserva"
+                ],
+                "summary": "Crear, editar o eliminar una reserva",
+                "description": "Dependiendo del valor del parámetro 'action', se puede crear (c), actualizar (u) o eliminar (d) una reserva.\n     *     Se valida que el número de personas no supere la capacidad de la mesa.",
+                "operationId": "3d5fe630c6be36ec4c322990a0da3354",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "action"
+                                ],
+                                "properties": {
+                                    "action": {
+                                        "description": "Acción a realizar: 'c' para crear, 'u' para actualizar, 'd' para eliminar",
+                                        "type": "string",
+                                        "example": "c"
+                                    },
+                                    "id": {
+                                        "description": "ID de la reserva (requerido para 'u' y 'd')",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "comensal_id": {
+                                        "description": "ID del comensal (requerido para 'c' y 'u')",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "mesa_id": {
+                                        "description": "ID de la mesa (requerido para 'c' y 'u')",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "fecha": {
+                                        "description": "Fecha de la reserva (requerido para 'c' y 'u')",
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2025-06-06"
+                                    },
+                                    "hora": {
+                                        "description": "Hora de la reserva (requerido para 'c' y 'u')",
+                                        "type": "string",
+                                        "example": "18:00"
+                                    },
+                                    "numero_de_personas": {
+                                        "description": "Número de personas (requerido para 'c' y 'u')",
+                                        "type": "integer",
+                                        "example": 2
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Operación exitosa"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "reserva": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "comensal_id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "mesa_id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "fecha": {
+                                                            "type": "string",
+                                                            "example": "2025-06-06"
+                                                        },
+                                                        "hora": {
+                                                            "type": "string",
+                                                            "example": "18:00"
+                                                        },
+                                                        "numero_de_personas": {
+                                                            "type": "integer",
+                                                            "example": 2
+                                                        },
+                                                        "created_at": {
+                                                            "type": "string",
+                                                            "format": "date-time",
+                                                            "example": "2025-04-21T14:22:00.000000Z"
+                                                        },
+                                                        "updated_at": {
+                                                            "type": "string",
+                                                            "format": "date-time",
+                                                            "example": "2025-04-21T14:22:00.000000Z"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "status": {
+                                                    "type": "integer",
+                                                    "example": 0
+                                                },
+                                                "mesa_capacidad": {
+                                                    "type": "integer",
+                                                    "example": 5
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error del servidor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Error interno del servidor"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "error_message": {
+                                                    "type": "string",
+                                                    "example": "Detalle del error"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Comensal",
+            "description": "Comensal"
+        },
+        {
+            "name": "Mesa",
+            "description": "Mesa"
+        },
+        {
+            "name": "Reserva",
+            "description": "Reserva"
+        }
+    ]
+}
